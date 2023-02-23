@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI_Depos.Pages.DepositStep2"
+             Title="DepositStep2">
+
+    <!--#53AE94 IconColor-->
+
+
+    <Grid BackgroundColor="#1E1E1E">
+
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="775"/>
+
+        </Grid.RowDefinitions>
+
+        <StackLayout Grid.Row="0">
+
+            <Button
+                x:Name="btnBack" Text="←" Margin="10,10,0,0"
+                FontSize="40" Padding="0,-15,0,0" TextColor="White"
+                BackgroundColor="Transparent" FontFamily="OpenSans-Semibold.ttf"
+                BorderColor="Black" FontAttributes="Bold" HeightRequest="40"
+                WidthRequest="40" CornerRadius="20" HorizontalOptions="Start"
+                Clicked="btnBack_Clicked"/>
+
+        </StackLayout>
+
+        <ScrollView Grid.Row="1" >
+
+            <StackLayout Spacing="0">
+
+                <Border 
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 15,15,0,0" 
+                        BackgroundColor="#272727" Padding="5">
+
+                    <StackLayout>
+
+                        <HorizontalStackLayout HorizontalOptions="Center" Margin="0,25,0,0">
+
+                            <Label Text="Deposit for " TextColor="White" FontFamily="ebrimabd.ttf"/>
+                            <Label x:Name="DepositPeriod" Text="3 months  " TextColor="White" FontFamily="ebrimabd.ttf" />
+                            <Label x:Name="InterestRate" Text="11" TextColor="White" FontFamily="ebrimabd.ttf" />
+                            <Label Text=" per annum" TextColor="White" FontFamily="ebrimabd.ttf" />
+
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout HorizontalOptions="Center" >
+
+                            <Label x:Name="lblAmount"
+                               Text="1000 $"
+                               FontSize="40"
+                               TextColor="White" FontFamily="ebrimabd.ttf"/>
+
+                        </HorizontalStackLayout>
+
+                        <StackLayout Margin="0,15,0,0">
+
+                            <Image  HeightRequest="220" WidthRequest="220" 
+                                Source="depositinterval31.png"/>
+
+                        </StackLayout>
+
+                        <Border Margin="0,-176,0,60"
+                            BackgroundColor="Transparent" StrokeThickness="0"
+                            HeightRequest="132" WidthRequest="132"
+                            StrokeShape="RoundRectangle 65,65,65,65"
+                            >
+
+                            <VerticalStackLayout 
+                                VerticalOptions="Center" HorizontalOptions="Center"
+                                Padding="5" Spacing="5">
+
+                                <Image  HeightRequest="20" WidthRequest="20" Source="persent.png"/>
+
+                                <Label 
+                                    Text="10 $" HorizontalOptions="Center" FontSize="18"
+                                    TextColor="White" FontAttributes="Bold"/>
+
+                                <Label 
+                                    FontSize="12" HorizontalOptions="Center"
+                                    Text="Accrued " TextColor="White" FontFamily="ebrimabd.ttf"/>
+
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                    </StackLayout>
+
+                </Border>
+
+
+                <!--Activ-->
+                <Frame Margin="15" BackgroundColor="#272727" BorderColor="Transparent"
+                       Padding="10">
+
+                    <VerticalStackLayout 
+                    HorizontalOptions="Center" Padding="5" Spacing="5">
+
+                        <Image  HeightRequest="25"  Source="stumbleupon32.png"/>
+
+                        <Label
+                            Text="Activ"
+                            Margin="0,10,0,0" TextColor="White" FontFamily="ebrima.ttf"
+                            FontSize="16" FontAttributes="Bold" 
+                            HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+                        <Label 
+                            Text="Valid (until) 23.05.2023" FontAttributes="Bold" 
+                            Margin="0,5,0,0" TextColor="Grey" FontFamily="ebrima.ttf" FontSize="13" 
+                            HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+
+                        <Label 
+                            Text="Next pay: 23.05.2023" FontAttributes="Bold" 
+                            TextColor="Grey" FontFamily="ebrima.ttf" FontSize="13" Margin="0,-5,0,0"
+                            HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+                    </VerticalStackLayout>
+
+                </Frame>
+                <!--Activ-->
+
+
+
+
+                <Frame BackgroundColor="#272727" BorderColor="Transparent"
+                       Padding="10,0,0,0" CornerRadius="0">
+
+                    <StackLayout Spacing="2">
+
+                        <Frame BackgroundColor="#272727" HeightRequest="72"
+                            CornerRadius="12" BorderColor="Transparent" Padding="4">
+
+                            <StackLayout Orientation="Horizontal" Padding="0" Spacing="3" VerticalOptions="Center">
+
+                                <Frame BackgroundColor="#272727" WidthRequest="60"
+                                    BorderColor="Transparent" Padding="0">
+
+                                    <StackLayout VerticalOptions="Center">
+
+                                        <ImageButton HeightRequest="32" WidthRequest="32" Padding="0" CornerRadius="0" BackgroundColor="Transparent"
+                                                BorderColor="Transparent" Source="percentage232.png" x:Name="btnDividendPayment"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center"
+                                                Clicked="btnDividendPayment_Clicked">
+
+                                        </ImageButton>
+
+                                    </StackLayout>
+
+                                </Frame>
+
+                                <Frame BackgroundColor="#272727" HorizontalOptions="FillAndExpand"
+                                    BorderColor="Transparent" Padding="0">
+
+                                    <StackLayout Padding="5" VerticalOptions="Center">
+
+                                        <Label Text="Dividend payment"
+                                            TextColor="White" FontFamily="ebrima.ttf"
+                                            FontSize="16" FontAttributes="Bold" Margin="0,0,0,0"
+                                            HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+                                        <StackLayout Orientation="Horizontal">
+
+                                            <Label 
+                                                Text="To my bank card" TextColor="Grey" FontFamily="ebrima.ttf"
+                                                FontSize="13" FontAttributes="Bold" Margin="0,5,0,0"
+                                                HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+
+                                        </StackLayout>
+
+                                    </StackLayout>
+
+                                </Frame>
+
+                                <Frame BackgroundColor="#272727" WidthRequest="60"
+                                    BorderColor="Transparent" Padding="0">
+
+                                    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+
+                                    </StackLayout>
+
+                                </Frame>
+
+                            </StackLayout>
+
+                        </Frame>
+
+                        <Frame BackgroundColor="#272727" HeightRequest="72"
+                            CornerRadius="12" BorderColor="Transparent" Padding="4">
+
+                            <StackLayout Orientation="Horizontal" Padding="0" Spacing="3" VerticalOptions="Center">
+
+                                <Frame BackgroundColor="#272727" WidthRequest="60"
+                                    BorderColor="Transparent" Padding="0">
+
+                                    <StackLayout VerticalOptions="Center">
+
+                                        <ImageButton HeightRequest="32" WidthRequest="32" Padding="0" CornerRadius="0" BackgroundColor="Transparent"
+                                                BorderColor="Transparent" Source="sinchronize32.png" x:Name="btnRenew"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center"
+                                                Clicked="btnRenew_Clicked" >
+
+                                        </ImageButton>
+
+                                        <Frame 
+                                            x:Name="frmCryptoMask2" BackgroundColor="Black" IsVisible="false"
+                                            HeightRequest="32" WidthRequest="32" Opacity="0.01" CornerRadius="20"
+                                            Margin="0,-41,0,0" BorderColor="Transparent"/>
+
+                                    </StackLayout>
+
+                                </Frame>
+
+                                <Frame BackgroundColor="#272727" HorizontalOptions="FillAndExpand"
+                                    BorderColor="Transparent" Padding="0">
+
+                                    <StackLayout Padding="5" VerticalOptions="Center">
+
+                                        <Label Text="Automatic renewal" x:Name="lblUnstake2"
+                                            TextColor="White" FontFamily="ebrima.ttf"
+                                            FontSize="16" FontAttributes="Bold" Margin="0,0,0,0"
+                                            HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+                                        <StackLayout Orientation="Horizontal">
+
+
+
+                                        </StackLayout>
+
+                                    </StackLayout>
+
+                                </Frame>
+
+                                <Frame BackgroundColor="#272727" WidthRequest="60"
+                                    BorderColor="Transparent" Padding="0">
+
+                                    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+                                        <Switch
+                                            x:Name="swIsActive2" IsToggled="False" 
+                                            OnColor="Green" ThumbColor="White"
+                                            BackgroundColor="Transparent"
+                                            />
+
+                                    </StackLayout>
+
+                                </Frame>
+
+
+                            </StackLayout>
+
+                        </Frame>
+
+                        <Frame BackgroundColor="#272727" HeightRequest="72"
+                            CornerRadius="12" BorderColor="Transparent" Padding="4">
+
+                            <StackLayout Orientation="Horizontal" Padding="0" Spacing="3" VerticalOptions="Center">
+
+                                <Frame BackgroundColor="#272727" WidthRequest="60"
+                                    BorderColor="Transparent" Padding="0">
+
+                                    <StackLayout VerticalOptions="Center">
+
+                                        <ImageButton HeightRequest="32" WidthRequest="32" Padding="0" CornerRadius="0" BackgroundColor="Transparent"
+                                                BorderColor="Transparent" Source="textfile432.png" x:Name="btnBankStatement"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center"
+                                                Clicked="btnBankStatement_Clicked" >
+                                        </ImageButton>
+
+                                    </StackLayout>
+
+                                </Frame>
+
+                                <Frame BackgroundColor="#272727" HorizontalOptions="FillAndExpand"
+                                    BorderColor="Transparent" Padding="0">
+
+                                    <StackLayout Padding="5" VerticalOptions="Center">
+
+                                        <Label Text="Bank statement"
+                                            TextColor="White" FontFamily="ebrima.ttf"
+                                            FontSize="16" FontAttributes="Bold" Margin="0,0,0,0"
+                                            HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+
+                                        <StackLayout Orientation="Horizontal">
+
+                                        </StackLayout>
+
+                                    </StackLayout>
+
+                                </Frame>
+
+                                <Frame BackgroundColor="#272727" WidthRequest="60"
+                                    BorderColor="Transparent" Padding="0">
+
+                                    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+
+                                    </StackLayout>
+
+                                </Frame>
+
+                            </StackLayout>
+
+                        </Frame>
+
+                        <Frame BackgroundColor="#272727" HeightRequest="72"
+                            CornerRadius="12" BorderColor="Transparent" Padding="4">
+
+                            <StackLayout Orientation="Horizontal" Padding="0" Spacing="3" VerticalOptions="Center">
+
+                                <Frame BackgroundColor="#272727" WidthRequest="60"
+                                    BorderColor="Transparent" Padding="0">
+
+                                    <StackLayout VerticalOptions="Center">
+
+                                        <Frame HeightRequest="40" WidthRequest="40" Padding="3" CornerRadius="25" 
+                                               BorderColor="Transparent" BackgroundColor="Transparent">
+
+
+                                            <ImageButton HeightRequest="32" WidthRequest="32" Padding="0" CornerRadius="0" BackgroundColor="Transparent"
+                                                BorderColor="Transparent" Source="paper32.png" x:Name="btnContract"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center"
+                                                Clicked="btnContract_Clicked" >
+                                            </ImageButton>
+
+                                        </Frame>
+
+                                    </StackLayout>
+
+                                </Frame>
+
+                                <Frame BackgroundColor="#272727" HorizontalOptions="FillAndExpand"
+                                    BorderColor="Transparent" Padding="0">
+
+                                    <StackLayout Padding="5" VerticalOptions="Center">
+
+                                        <Label Text="Contract"
+                                            TextColor="White" FontFamily="ebrima.ttf"
+                                            FontSize="16" FontAttributes="Bold" Margin="0,0,0,0"
+                                            HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+
+                                        <StackLayout Orientation="Horizontal">
+
+                                        </StackLayout>
+
+                                    </StackLayout>
+
+                                </Frame>
+
+                                <Frame BackgroundColor="#272727" WidthRequest="60"
+                                    BorderColor="Transparent" Padding="0">
+
+                                    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+
+                                    </StackLayout>
+
+                                </Frame>
+
+                            </StackLayout>
+
+                        </Frame>
+
+                        <Frame BackgroundColor="#272727" HeightRequest="72"
+                            CornerRadius="12" BorderColor="Transparent" Padding="4">
+
+                            <StackLayout Orientation="Horizontal" Padding="0" Spacing="3" VerticalOptions="Center">
+
+                                <Frame BackgroundColor="#272727" WidthRequest="60"
+                                    BorderColor="Transparent" Padding="0">
+
+
+                                    <ImageButton HeightRequest="32" WidthRequest="32" Padding="0" CornerRadius="0" BackgroundColor="Transparent"
+                                                BorderColor="Transparent" Source="edit32.png" x:Name="btnName"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center"
+                                                Clicked="btnName_Clicked_1"/>
+
+
+                                </Frame>
+
+                                <Frame BackgroundColor="#272727" HorizontalOptions="FillAndExpand"
+                                    BorderColor="Transparent" Padding="0">
+
+                                    <StackLayout Padding="5" VerticalOptions="Center">
+
+                                        <Label Text="Change name"
+                                            TextColor="White" FontFamily="ebrima.ttf"
+                                            FontSize="16" FontAttributes="Bold" Margin="0,0,0,0"
+                                            HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+
+                                        <StackLayout Orientation="Horizontal">
+
+                                        </StackLayout>
+
+                                    </StackLayout>
+
+                                </Frame>
+
+                                <Frame BackgroundColor="#272727" WidthRequest="60"
+                                    BorderColor="Transparent" Padding="0">
+
+                                    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+
+                                    </StackLayout>
+
+                                </Frame>
+
+                            </StackLayout>
+
+                        </Frame>
+
+                        <Frame BackgroundColor="#272727" HeightRequest="72"
+                            CornerRadius="12" BorderColor="Transparent" Padding="4">
+
+                            <StackLayout Orientation="Horizontal" Padding="0" Spacing="3" VerticalOptions="Center">
+
+                                <Frame BackgroundColor="#272727" WidthRequest="60"
+                                    BorderColor="Transparent" Padding="0">
+
+                                    <ImageButton HeightRequest="32" WidthRequest="32" Padding="0" CornerRadius="0" BackgroundColor="Transparent"
+                                                BorderColor="Transparent" Source="performance32.png" x:Name="btnCalculation"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center"
+                                                Clicked="btnCalculation_Clicked"/>
+
+                                </Frame>
+
+                                <Frame BackgroundColor="#272727" HorizontalOptions="FillAndExpand"
+                                    BorderColor="Transparent" Padding="0">
+
+                                    <StackLayout Padding="5" VerticalOptions="Center">
+
+                                        <Label Text="Predictive calculation"
+                                            TextColor="White" FontFamily="ebrima.ttf"
+                                            FontSize="16" FontAttributes="Bold" Margin="0,0,0,0"
+                                            HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+
+                                        <StackLayout Orientation="Horizontal">
+
+                                        </StackLayout>
+
+                                    </StackLayout>
+
+                                </Frame>
+
+                                <Frame BackgroundColor="#272727" WidthRequest="60"
+                                    BorderColor="Transparent" Padding="0">
+
+                                    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+
+                                    </StackLayout>
+
+                                </Frame>
+
+                            </StackLayout>
+
+                        </Frame>
+
+                        <Frame BackgroundColor="#272727" HeightRequest="72"
+                            CornerRadius="12" BorderColor="Transparent" Padding="4">
+
+                            <StackLayout Orientation="Horizontal" Padding="0" Spacing="3" VerticalOptions="Center">
+
+                                <Frame BackgroundColor="#272727" WidthRequest="60"
+                                    BorderColor="Transparent" Padding="0">
+
+                                    <ImageButton HeightRequest="32" WidthRequest="32" Padding="0" CornerRadius="0" BackgroundColor="Transparent"
+                                                BorderColor="Transparent" Source="stop432.png" x:Name="btnStop"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center"
+                                                Clicked="btnStop_Clicked"/>
+
+                                </Frame>
+
+                                <Frame BackgroundColor="#272727" HorizontalOptions="FillAndExpand"
+                                    BorderColor="Transparent" Padding="0">
+
+                                    <StackLayout Padding="5" VerticalOptions="Center">
+
+                                        <Label Text="Predictive calculation"
+                                            TextColor="White" FontFamily="ebrima.ttf"
+                                            FontSize="16" FontAttributes="Bold" Margin="0,0,0,0"
+                                            HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+
+                                        <StackLayout Orientation="Horizontal">
+
+                                        </StackLayout>
+
+                                    </StackLayout>
+
+                                </Frame>
+
+                                <Frame BackgroundColor="#272727" WidthRequest="60"
+                                    BorderColor="Transparent" Padding="0">
+
+                                    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+
+                                    </StackLayout>
+
+                                </Frame>
+
+                            </StackLayout>
+
+                        </Frame>
+
+
+                    </StackLayout>
+
+                </Frame>
+
+            </StackLayout>
+
+        </ScrollView>
+
+
+
+
+
+    </Grid>
+
+</ContentPage>
