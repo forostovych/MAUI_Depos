@@ -1,5 +1,6 @@
 using Maui_App_Deposites;
 using Maui_App_Deposites.Pages;
+using MAUI_Depos.ViewModels;
 
 namespace MAUI_Depos.Pages;
 
@@ -7,14 +8,39 @@ public partial class DepositPage : ContentPage
 {
     static BaseStakingOption baseStaking;
     static DepositPeriod depositPeriod;
+    private string error = string.Empty;
+    private ChooseOptionViewModel viewModel;
+    private List<UserStakingOption> stakingOptions;
 
-    public DepositPage()
+    public DepositPage()  {  }
+
+    public DepositPage(ChooseOptionViewModel _viewModel)
     {
-
+        viewModel = _viewModel;
+        BindingContext = viewModel;
         InitializeComponent();
         LoadValues();
 
+        stakingOptions = InitializeStakingOtions();
+
     }
+
+    private List<UserStakingOption> InitializeStakingOtions()
+    {
+        stakingOptions = new List<UserStakingOption>();
+        foreach (var res in viewModel.options)
+            stakingOptions.Add(res);
+
+        int length = stakingOptions.Count;
+
+        for (int i = 0; i < length; i++)
+        {
+
+        }
+
+        return stakingOptions;
+    }
+
 
     private void LoadValues()
     {

@@ -12,13 +12,26 @@ public partial class App : Application
     {
         InitializeComponent();
 
+        using var stream = FileSystem.OpenAppPackageFileAsync("ChooseOptionViewModel.json").GetAwaiter().GetResult();
+        using var reader = new StreamReader(stream);
+
+        var contents = reader.ReadToEnd();
         string Json = VirtualTestData.Json;
-
-        ChooseOptionViewModel viewModel = JsonConvert.DeserializeObject<ChooseOptionViewModel>(Json);
-
+        ChooseOptionViewModel viewModel;
 
 
-        MainPage = new DepositPage();
+        viewModel = JsonConvert.DeserializeObject<ChooseOptionViewModel>(contents);
+        MainPage = new DepositPage(viewModel);
+
+        
+        //string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "file.txt");
+        //string fileContents = string.Empty;
+
+        //if (File.Exists(filePath))
+        //{
+        //    fileContents = File.ReadAllText(filePath);
+        //}
+        
 
     }
 }

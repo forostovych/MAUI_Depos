@@ -61,6 +61,7 @@
 	  <None Remove="Resources\Images\stumbleupon32.png" />
 	  <None Remove="Resources\Images\textfile432.png" />
 	  <None Remove="Resources\Images\usdt.png" />
+	  <None Remove="Resources\Raw\ChooseOptionViewModel.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -85,6 +86,22 @@
 	  <MauiXaml Update="Pages\DepositStep2.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Moralis" Version="2.0.6-beta" />
+		<PackageReference Include="Nethereum.JsonRpc.Client" Version="4.12.0" />
+		<PackageReference Include="Nethereum.JsonRpc.RpcClient" Version="4.12.0" />
+		<PackageReference Include="Nethereum.Signer.EIP712" Version="4.12.0" />
+		<PackageReference Include="Nethereum.Util" Version="4.12.0" />
+		<PackageReference Include="Nethereum.Web3" Version="4.12.0" />
+		<PackageReference Include="Solnet.Extensions" Version="6.1.0" />
+		<PackageReference Include="Solnet.KeyStore" Version="6.1.0" />
+		<PackageReference Include="Solnet.Programs" Version="6.1.0" />
+		<PackageReference Include="Solnet.Rpc" Version="6.1.0" />
+		<PackageReference Include="Solnet.Wallet" Version="6.1.0" />
+		<PackageReference Include="WalletConnect.Desktop" Version="1.7.2" />
+		<PackageReference Include="WalletConnect.NEthereum" Version="1.7.2" />
 	</ItemGroup>
 
 	<ItemGroup>
