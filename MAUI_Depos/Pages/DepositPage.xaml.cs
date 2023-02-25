@@ -1,4 +1,3 @@
-using Maui_App_Deposites;
 using Maui_App_Deposites.Pages;
 using MAUI_Depos.ViewModels;
 
@@ -6,46 +5,106 @@ namespace MAUI_Depos.Pages;
 
 public partial class DepositPage : ContentPage
 {
-    static BaseStakingOption baseStaking;
-    static DepositPeriod depositPeriod;
-    private string error = string.Empty;
     private ChooseOptionViewModel viewModel;
-    private List<UserStakingOption> stakingOptions;
+    private List<UserStakingOption> options;
+    private List<OpportunitiesUI> oportunitiesUI;
 
-    public DepositPage()  {  }
+    public DepositPage()
+    {
+
+    }
 
     public DepositPage(ChooseOptionViewModel _viewModel)
     {
         viewModel = _viewModel;
         BindingContext = viewModel;
         InitializeComponent();
-        LoadValues();
-
-        stakingOptions = InitializeStakingOtions();
-
+        LoadValues(_viewModel);
     }
 
-    private List<UserStakingOption> InitializeStakingOtions()
+    private void LoadValues(ChooseOptionViewModel _viewModel)
     {
-        stakingOptions = new List<UserStakingOption>();
-        foreach (var res in viewModel.options)
-            stakingOptions.Add(res);
+        options = InitializeActiveStakingOptions(_viewModel);       // Initialize all active options
+        oportunitiesUI = InitializeOpportunitiesUI(options);        // Initialize all OpportunitiesUI
+        SetPeriodValuesNew();
+    }
+    private async Task SetPeriodValuesNew()
+    {
+        int selectedId = OpportunitiesUI.CurrentId;
+        OpportunitiesUI currentUI = oportunitiesUI[selectedId];
 
-        int length = stakingOptions.Count;
-
-        for (int i = 0; i < length; i++)
+        if (selectedId == 0)
         {
+            lblMaintPercent.Text = $"{currentUI.PercentAPM} %";
+            lblDepositPeriod.Text = $"{currentUI.DepositPeriod} days";
+            lblPercent.Text = $"{currentUI.PercentAPM} % per month";
+            lblUnstakeDurationInDays.Text = SetUnstakeDurationInDays(currentUI);
 
+            SwitchConrol(swIsActive, currentUI.CanUnstakeBeforeEnd);
+            ButtonConrol(btnMinus, false);
+            ButtonConrol(btnPlus, true);
         }
 
-        return stakingOptions;
+        else if (selectedId != 0 && selectedId != oportunitiesUI.Count-1)
+        {
+            lblMaintPercent.Text = $"{currentUI.PercentAPM} %";
+            lblDepositPeriod.Text = $"{currentUI.DepositPeriod} days";
+            lblPercent.Text = $"{currentUI.PercentAPM} % per month";
+            lblUnstakeDurationInDays.Text = SetUnstakeDurationInDays(currentUI);
+
+            SwitchConrol(swIsActive, currentUI.CanUnstakeBeforeEnd);
+            ButtonConrol(btnMinus, true);
+            ButtonConrol(btnPlus, true);
+        }
+
+        else if (selectedId == oportunitiesUI.Count-1)
+        {
+            lblMaintPercent.Text = $"{currentUI.PercentAPM} %";
+            lblDepositPeriod.Text = $"{currentUI.DepositPeriod} days";
+            lblPercent.Text = $"{currentUI.PercentAPM} % per month";
+            lblUnstakeDurationInDays.Text = SetUnstakeDurationInDays(currentUI);
+
+            SwitchConrol(swIsActive, currentUI.CanUnstakeBeforeEnd);
+            ButtonConrol(btnMinus, true);
+            ButtonConrol(btnPlus, false);
+            lblUnstake.TextColor = Colors.Grey;
+        }
+    }
+    private string SetUnstakeDurationInDays(OpportunitiesUI currentUI)
+    {
+        if (currentUI.CanUnstakeBeforeEnd == false)
+        {
+            return "0";
+        }
+        else
+        {
+            return $"Days unstake period {currentUI.UnstakeDurationInDays} days";
+        }
     }
 
-
-    private void LoadValues()
+    private List<UserStakingOption> InitializeActiveStakingOptions(ChooseOptionViewModel viewModel)
     {
-        TestInitializeValues();
-        SetPeriodValues();
+        options = new List<UserStakingOption>();
+
+        foreach (var res in viewModel.options)
+        {
+            if (res.IsActive)
+            {
+                options.Add(res);
+            }
+        }
+
+        return options;
+    }
+    private List<OpportunitiesUI> InitializeOpportunitiesUI(List<UserStakingOption> options)
+    {
+        oportunitiesUI = new List<OpportunitiesUI>();
+        for (int i = 0; i < options.Count; i++)
+        {
+            oportunitiesUI.Add(new OpportunitiesUI(options[i], i));
+        }
+
+        return oportunitiesUI;
     }
 
     private async void btnMakeDeposit_Clicked(object sender, EventArgs e)
@@ -54,27 +113,25 @@ public partial class DepositPage : ContentPage
         DepositStep step = new DepositStep(lblDepositPeriod.Text, lblPercent.Text, swIsActive.IsToggled);
 
         // Анимированный переход на следующую страницу
-        await Navigation.PushModalAsync(step);
+        await Navigation.PushModalAsync(step, true);
 
     }
-
-    private void TestInitializeValues()
+    private async void btnMinus_Clicked(object sender, EventArgs e)
     {
+        if (OpportunitiesUI.CurrentId == 0)
+            return;
 
-        baseStaking = new BaseStakingOption()
-        {
-            Id = 1,
-            IsActive = true,
-            APM = 10,
-            UnstakeDurationInDays = 15,
-            StakeDurationInDays = 60,
-            CanUnstakeBeforeEnd = false,
-        };
-        depositPeriod = DepositPeriod.twelve;
-        frmCryptoMask.Opacity = 0.01;
-
+        OpportunitiesUI.CurrentId = OpportunitiesUI.CurrentId - 1;
+        await SetPeriodValuesNew();
     }
+    private async void btnPlus_Clicked(object sender, EventArgs e)
+    {
+        if (OpportunitiesUI.CurrentId == oportunitiesUI.Count - 1)
+            return;
 
+        OpportunitiesUI.CurrentId = OpportunitiesUI.CurrentId + 1;
+        await SetPeriodValuesNew();
+    }
     private async void swIsActive_Toggled(object sender, ToggledEventArgs e)
     {
         if (swIsActive.IsToggled == true)
@@ -90,91 +147,6 @@ public partial class DepositPage : ContentPage
         }
     }
 
-    private async void btnMinus_Clicked(object sender, EventArgs e)
-    {
-        if (depositPeriod == DepositPeriod.one)
-            return;
-
-        depositPeriod = (depositPeriod) - 1;
-        await SetPeriodValues();
-    }
-
-    private async void btnPlus_Clicked(object sender, EventArgs e)
-    {
-        if (depositPeriod == DepositPeriod.twelve)
-            return;
-
-        depositPeriod = (DepositPeriod)((depositPeriod) + 1);
-        await SetPeriodValues();
-    }
-
-    private async Task SetPeriodValues()
-    {
-
-        if (depositPeriod == DepositPeriod.one)
-        {
-            lblDepositPeriod.Text = "1 month";
-            lblPercent.Text = "1.5%";
-            lblMaintPercent.Text = lblPercent.Text;
-            frmCryptoMask.Opacity = 0.5d;
-            frmCryptoMask.IsVisible = true;
-            ButtonConrol(btnMinus, false);
-
-            return;
-        }
-        else if (depositPeriod == DepositPeriod.three)
-        {
-
-            lblDepositPeriod.Text = "3 month";
-            lblPercent.Text = "4.5%";
-            lblMaintPercent.Text = lblPercent.Text;
-            ButtonConrol(btnMinus, true);
-            lblUnstake.TextColor = Colors.Grey;
-            frmCryptoMask.Opacity = 0.5d;
-            frmCryptoMask.IsVisible = true;
-            SwitchConrol(swIsActive, false);
-
-            return;
-        }
-        else if (depositPeriod == DepositPeriod.six)
-        {
-            lblDepositPeriod.Text = "6 month";
-            lblPercent.Text = "9.5%";
-            lblMaintPercent.Text = lblPercent.Text;
-            lblUnstake.TextColor = Colors.White;
-            frmCryptoMask.Opacity = 0.01;
-            frmCryptoMask.IsVisible = false;
-            SwitchConrol(swIsActive, true);
-
-            return;
-        }
-        else if (depositPeriod == DepositPeriod.nine)
-        {
-            lblDepositPeriod.Text = "9 month";
-            lblPercent.Text = "14%";
-            lblMaintPercent.Text = lblPercent.Text;
-            ButtonConrol(btnPlus, true);
-            frmCryptoMask.Opacity = 0.01;
-            frmCryptoMask.IsVisible = false;
-
-            return;
-        }
-        else if (depositPeriod == DepositPeriod.twelve)
-        {
-            lblDepositPeriod.Text = "12 month";
-            lblPercent.Text = "18.6%";
-            lblMaintPercent.Text = lblPercent.Text;
-
-
-            ButtonConrol(btnPlus, false);
-            frmCryptoMask.Opacity = 0.01;
-            frmCryptoMask.IsVisible = false;
-
-            return;
-        }
-
-    }
-
     private void SwitchConrol(Switch switchConrol, bool isActiv)
     {
         if (isActiv == true)
@@ -183,6 +155,7 @@ public partial class DepositPage : ContentPage
             switchConrol.IsEnabled = isActiv;
             switchConrol.OnColor = Colors.Grey;
             switchConrol.ThumbColor = Colors.White;
+            imgLogoUnstak.Opacity = 1;
         }
         else
         {
@@ -190,9 +163,9 @@ public partial class DepositPage : ContentPage
             switchConrol.IsEnabled = isActiv;
             switchConrol.OnColor = Colors.Grey;
             switchConrol.ThumbColor = Colors.Grey;
+            imgLogoUnstak.Opacity = 0.3d;
         }
     }
-
     private void ButtonConrol(Microsoft.Maui.Controls.Button button, bool isActiv)
     {
         if (isActiv == true)
@@ -210,11 +183,23 @@ public partial class DepositPage : ContentPage
 
 }
 
-public enum DepositPeriod
+public class OpportunitiesUI
 {
-    one,
-    three,
-    six,
-    nine,
-    twelve,
+    public static int CurrentId { get; set; }   //      The current ID of the selected opportunity
+    public int Id { get; }                      // 0.   Id
+    public decimal PercentAPM { get; }          // 5.   Percentage per month {blblPercent.Text}
+    public int UnstakeDurationInDays { get; }   // 6.   The waiting period before withdrawing money
+    public decimal DepositPeriod { get; }       // 7.   Deposit time {lblDepositPeriod.Text}
+    public bool CanUnstakeBeforeEnd { get; }    // 8.   Is it possible to cancel the deposit early?
+
+    public OpportunitiesUI(UserStakingOption res, int id)
+    {
+        PercentAPM = res.APM;                                   // 5.   Percentage per month
+        UnstakeDurationInDays = res.UnstakeDurationInDays;      // 6.   The waiting period before withdrawing money                           // 
+        DepositPeriod = res.StakeDurationInDays;                // 7.   Deposit time
+        CanUnstakeBeforeEnd = res.CanUnstakeBeforeEnd;          // 8.   Is it possible to cancel the deposit early
+        Id = id;
+        CurrentId = Id;                                         // 10.  The current ID of the selected opportunity
+    }
+
 }

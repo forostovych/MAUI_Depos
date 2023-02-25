@@ -167,13 +167,15 @@
 
                         <StackLayout VerticalOptions="Center">
 
-                            <Frame HeightRequest="40" WidthRequest="40" Padding="0" CornerRadius="20">
-                                <Image Source="usdt" HeightRequest="40"  />
-                            </Frame>
                             <Frame 
-                            x:Name="frmCryptoMask" BackgroundColor="Black" IsVisible="false"
-                            HeightRequest="41" WidthRequest="41" Opacity="0.01" CornerRadius="20"
-                            Margin="0,-41,0,0" BorderColor="Transparent"/>
+                                HeightRequest="40" WidthRequest="40" Padding="0" CornerRadius="20"
+                                BackgroundColor="Transparent" BorderColor="Transparent">
+                                <Image Source="usdt" HeightRequest="40" x:Name="imgLogoUnstak"  />
+                            </Frame>
+                            <!--<Frame 
+                                x:Name="frmCryptoMask" BackgroundColor="Black" IsVisible="false"
+                                HeightRequest="41" WidthRequest="41" Opacity="0.01" CornerRadius="20"
+                                Margin="0,-41,0,0" BorderColor="Transparent"/>-->
 
                         </StackLayout>
 
@@ -185,16 +187,16 @@
                         <StackLayout Padding="5" VerticalOptions="Center">
 
                             <Label Text="а Can unstake before end" x:Name="lblUnstake"
-                               TextColor="White" FontFamily="ebrima.ttf"
-                            FontSize="16" FontAttributes="Bold" Margin="0,0,0,0"
-                            HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+                                   TextColor="White" FontFamily="ebrima.ttf"
+                                    FontSize="16" FontAttributes="Bold" Margin="0,0,0,0"
+                                    HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
                             <StackLayout Orientation="Horizontal">
 
                                 <Label 
-                                x:Name="UnstakeDurationInDays"
-                                Text="days unstake period" TextColor="Grey" FontFamily="ebrima.ttf"
-                                FontSize="14" FontAttributes="Bold" Margin="0,5,0,0"
-                                HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+                                    x:Name="lblUnstakeDurationInDays"
+                                    Text="days unstake period" TextColor="Grey" FontFamily="ebrima.ttf"
+                                    FontSize="14" FontAttributes="Bold" Margin="0,5,0,0"
+                                    HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
 
                             </StackLayout>
 

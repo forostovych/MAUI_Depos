@@ -1,5 +1,4 @@
 ﻿using MAUI_Depos.Pages;
-using MAUI_Depos.Resources;
 using MAUI_Depos.ViewModels;
 using Newtonsoft.Json;
 
@@ -16,7 +15,6 @@ public partial class App : Application
         using var reader = new StreamReader(stream);
 
         var contents = reader.ReadToEnd();
-        string Json = VirtualTestData.Json;
         ChooseOptionViewModel viewModel;
 
 
