@@ -5,9 +5,10 @@ namespace Maui_App_Deposites.Pages;
 
 public partial class NewDepositAmountPage : ContentPage
 {
-    private readonly ChooseOptionViewModel ViewModel;
+    private readonly ChooseOptionViewModel viewModel;
     private readonly UserStakingOption option;
     private readonly bool isUnstaked;
+    private readonly bool isUserTogled;
 
     public NewDepositAmountPage(UserStakingOption option, bool isUnstaked)
     {
@@ -16,6 +17,18 @@ public partial class NewDepositAmountPage : ContentPage
         this.isUnstaked = isUnstaked;
 
         SetValuesUI();
+    }
+
+    public NewDepositAmountPage(ChooseOptionViewModel viewModel, UserStakingOption userStakingOption, bool isToggled)
+    {
+        InitializeComponent();
+        this.option = userStakingOption;
+        this.isUnstaked = isUnstaked;
+        this.isUserTogled = isUserTogled;
+        this.viewModel = viewModel;
+
+        SetValuesUI();
+
     }
 
     private void SetValuesUI()
@@ -27,7 +40,7 @@ public partial class NewDepositAmountPage : ContentPage
 
     private async void btnBack_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushModalAsync(new NewDepositPage(ViewModel), true);
+        await Navigation.PushModalAsync(new NewDepositPage(viewModel), true);
     }
 
     private async void numberEntry_TextChanged(object sender, TextChangedEventArgs e)
@@ -58,7 +71,7 @@ public partial class NewDepositAmountPage : ContentPage
         double res = Convert.ToDouble(numberEntry.Text);
         if (res >= 1000)
         {
-            await Navigation.PushModalAsync(new DepositInfoPage(option, userEntryAmount, btnMakeDeposit.IsEnabled));
+            await Navigation.PushModalAsync(new DepositInfoPage(viewModel, option, userEntryAmount, isUserTogled, isUnstaked));
         }
        
     }

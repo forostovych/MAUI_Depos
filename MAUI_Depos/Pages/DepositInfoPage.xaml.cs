@@ -1,40 +1,51 @@
 using Maui_App_Deposites.Pages;
 using MAUI_Depos.ViewModels;
+using MAUI_ScanImages.Services;
 
 namespace MAUI_Depos.Pages;
 
 public partial class DepositInfoPage : ContentPage
 {
-    private readonly UserStakingOption options;
-    private readonly bool isUnstaked;
+    private readonly GetStakingUserInformationResponse responses;
+    private readonly ChooseOptionViewModel viewModel;
+    private readonly UserStakingOption option;
+
     private readonly decimal userEntryAmount;
+    private readonly bool isUserTogled;
+    private readonly bool isUnstaked;
 
-    private GetStakingUserInformationResponse responses;
-
-    public DepositInfoPage()
+    public DepositInfoPage(ChooseOptionViewModel viewModel, UserStakingOption option, decimal userEntryAmount, bool isUserTogled, bool isUnstaked)
     {
         InitializeComponent();
-    }
 
-    public DepositInfoPage(UserStakingOption options, decimal userEntryAmount, bool isUnstaked)
-    {
-        InitializeComponent();
-        this.options = options;
+        this.viewModel = viewModel;
+        this.option = option;
         this.userEntryAmount = userEntryAmount;
+        this.isUserTogled = isUserTogled;
         this.isUnstaked = isUnstaked;
         SetValuesUI();
     }
 
     private void SetValuesUI()
     {
-        DepositPeriod.Text = options.StakeDurationInDays.ToString() + " days, ";
-        InterestRate.Text = options.APM.ToString() + "%";
+        DepositPeriod.Text = option.StakeDurationInDays.ToString() + " days, ";
+        InterestRate.Text = option.APM.ToString() + "%";
 
         lblAmount.Text = userEntryAmount.ToString() + " $";
         lblAmountSmall.Text = userEntryAmount.ToString() + " $";
+
+        SetInterest(65);      // Set Interest Amount (as integer)65%                                      
     }
 
+    private void SetInterest(int interestAmount)
+    {
+        ServiceInterest serviceInterest = new ServiceInterest();
+        imgInterestDisplay.Source = serviceInterest.GetInterestImage(interestAmount);
 
+        double expectedProfit = (double)userEntryAmount * ((double)option.APM / 100);
+        double currentAmount = expectedProfit * ((double)interestAmount / 100);
+        lblAmountSmall.Text = currentAmount.ToString();
+    }
 
     private async Task ShowButton(object sender)
     {

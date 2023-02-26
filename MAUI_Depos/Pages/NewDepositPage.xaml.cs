@@ -27,7 +27,6 @@ public partial class NewDepositPage : ContentPage
 
         return interests;
     }
-
     private void LoadValues(ChooseOptionViewModel _viewModel)
     {
         options = InitializeActiveStakingOptions(_viewModel);       // Initialize all active options
@@ -73,7 +72,6 @@ public partial class NewDepositPage : ContentPage
             SwitchConrol(swIsActive, currentUI.CanUnstakeBeforeEnd);
             ButtonConrol(btnMinus, true);
             ButtonConrol(btnPlus, false);
-            lblUnstake.TextColor = Colors.Grey;
         }
     }
     private string SetUnstakeDurationInDays(OpportunitiesUI currentUI)
@@ -87,7 +85,6 @@ public partial class NewDepositPage : ContentPage
             return $"Days unstake period {currentUI.UnstakeDurationInDays} days";
         }
     }
-
     private List<UserStakingOption> InitializeActiveStakingOptions(ChooseOptionViewModel viewModel)
     {
         options = new List<UserStakingOption>();
@@ -112,11 +109,11 @@ public partial class NewDepositPage : ContentPage
 
         return oportunitiesUI;
     }
-
     private async void btnMakeDeposit_Clicked(object sender, EventArgs e)
     {
+        bool isUserTogled = swIsActive.IsToggled;
         // Создание новой страницы
-        NewDepositAmountPage step = new NewDepositAmountPage(options[OpportunitiesUI.CurrentId], swIsActive.IsToggled);
+        NewDepositAmountPage step = new NewDepositAmountPage(viewModel, options[OpportunitiesUI.CurrentId], isUserTogled);
 
         // Анимированный переход на следующую страницу
         await Navigation.PushModalAsync(step, true);
@@ -152,7 +149,6 @@ public partial class NewDepositPage : ContentPage
 
         }
     }
-
     private void SwitchConrol(Switch switchConrol, bool isActiv)
     {
         if (isActiv == true)
@@ -189,7 +185,6 @@ public partial class NewDepositPage : ContentPage
             button.TextColor = Colors.Grey;
         }
     }
-
 
 }
 

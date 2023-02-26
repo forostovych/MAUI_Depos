@@ -13,8 +13,9 @@ public partial class App : Application
 
         using var stream = FileSystem.OpenAppPackageFileAsync("ChooseOptionViewModel.json").GetAwaiter().GetResult();
         using var reader = new StreamReader(stream);
+                var contents = reader.ReadToEnd();
 
-        var contents = reader.ReadToEnd();
+
         ChooseOptionViewModel viewModel;
 
         viewModel = JsonConvert.DeserializeObject<ChooseOptionViewModel>(contents);

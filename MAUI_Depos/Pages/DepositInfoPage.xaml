@@ -62,35 +62,36 @@
 
                         <StackLayout Margin="0,15,0,0">
 
-                            <Image  HeightRequest="220" WidthRequest="220" 
-                                Source="depositinterval31.png"/>
+                            <Image
+                                x:Name="imgInterestDisplay"
+                                HeightRequest="220" WidthRequest="220" 
+                                Source="interest006.png"/>
 
                         </StackLayout>
 
                         <Border Margin="0,-176,0,60"
                             BackgroundColor="Transparent" StrokeThickness="0"
                             HeightRequest="132" WidthRequest="132"
-                            StrokeShape="RoundRectangle 65,65,65,65"
-                            >
+                            StrokeShape="RoundRectangle 65,65,65,65"    />
 
-                            <VerticalStackLayout 
+                        <VerticalStackLayout Margin="0,-170,0,100"
                                 VerticalOptions="Center" HorizontalOptions="Center"
                                 Padding="5" Spacing="5">
 
-                                <Image  HeightRequest="20" WidthRequest="20" Source="persent.png"/>
+                            <Image  HeightRequest="20" WidthRequest="20" Source="persent.png"/>
 
-                                <Label 
+                            <Label 
                                     x:Name="lblAmountSmall"
                                     Text="10 $" HorizontalOptions="Center" FontSize="18"
                                     TextColor="White" FontAttributes="Bold"/>
 
-                                <Label 
+                            <Label 
                                     FontSize="12" HorizontalOptions="Center"
                                     Text="Accrued " TextColor="White" FontFamily="ebrimabd.ttf"/>
 
-                            </VerticalStackLayout>
+                        </VerticalStackLayout>
 
-                        </Border>
+
 
                     </StackLayout>
 
