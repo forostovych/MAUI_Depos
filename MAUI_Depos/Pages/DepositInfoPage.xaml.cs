@@ -1,23 +1,45 @@
 using Maui_App_Deposites.Pages;
+using MAUI_Depos.ViewModels;
 
 namespace MAUI_Depos.Pages;
 
-public partial class DepositStep2 : ContentPage
+public partial class DepositInfoPage : ContentPage
 {
-    public DepositStep2()
+    private readonly UserStakingOption options;
+    private readonly bool isUnstaked;
+    private readonly decimal userEntryAmount;
+
+    private GetStakingUserInformationResponse responses;
+
+    public DepositInfoPage()
     {
         InitializeComponent();
     }
+
+    public DepositInfoPage(UserStakingOption options, decimal userEntryAmount, bool isUnstaked)
+    {
+        InitializeComponent();
+        this.options = options;
+        this.userEntryAmount = userEntryAmount;
+        this.isUnstaked = isUnstaked;
+        SetValuesUI();
+    }
+
+    private void SetValuesUI()
+    {
+        DepositPeriod.Text = options.StakeDurationInDays.ToString() + " days, ";
+        InterestRate.Text = options.APM.ToString() + "%";
+
+        lblAmount.Text = userEntryAmount.ToString() + " $";
+        lblAmountSmall.Text = userEntryAmount.ToString() + " $";
+    }
+
+
 
     private async Task ShowButton(object sender)
     {
         var res = (sender as ImageButton).Id;
         await DisplayAlert("Title", res.ToString(), "Ok");
-    }
-
-    private void btnBack_Clicked(object sender, EventArgs e)
-    {
-        Navigation.PushModalAsync(new DepositStep());
     }
 
     private async void btnDividendPayment_Clicked(object sender, EventArgs e)
@@ -63,5 +85,10 @@ public partial class DepositStep2 : ContentPage
     private async void btnStop_Clicked(object sender, EventArgs e)
     {
         await ShowButton(sender);
+    }
+
+    private void btnHome_Clicked(object sender, EventArgs e)
+    {
+
     }
 }

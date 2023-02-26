@@ -5,20 +5,9 @@
             "Wallets": [],
             "Id": 7,
             "IsActive": true,
-            "APM": 5.0,
-            "UnstakeDurationInDays": 14,
+            "APM": 5.8,
+            "UnstakeDurationInDays": 10,
             "StakeDurationInDays": 90,
-            "CanUnstakeBeforeEnd": false,
-            "IsInfiniteDeposit": false
-        },
-        {
-            "UserStakedAmount": 22.2,
-            "Wallets": [],
-            "Id": 8,    
-            "IsActive": true,
-            "APM": 15.0,
-            "UnstakeDurationInDays": 30,
-            "StakeDurationInDays": 180,
             "CanUnstakeBeforeEnd": false,
             "IsInfiniteDeposit": false
         },
@@ -27,13 +16,35 @@
             "Wallets": [],
             "Id": 8,
             "IsActive": true,
-            "APM": 18.0,
-            "UnstakeDurationInDays": 30,
+            "APM": 10.5,
+            "UnstakeDurationInDays": 15,
+            "StakeDurationInDays": 180,
+            "CanUnstakeBeforeEnd": false,
+            "IsInfiniteDeposit": false
+        },
+        {
+            "UserStakedAmount": 22.2,
+            "Wallets": [],
+            "Id": 9,
+            "IsActive": true,
+            "APM": 18.2,
+            "UnstakeDurationInDays": 20,
+            "StakeDurationInDays": 270,
+            "CanUnstakeBeforeEnd": true,
+            "IsInfiniteDeposit": false
+        },
+        {
+            "UserStakedAmount": 22.2,
+            "Wallets": [],
+            "Id": 10,
+            "IsActive": true,
+            "APM": 19.5,
+            "UnstakeDurationInDays": 25,
             "StakeDurationInDays": 360,
             "CanUnstakeBeforeEnd": true,
             "IsInfiniteDeposit": false
         }
-  ],
+    ],
     "UserInformation": {
         "Deposits": [
             {

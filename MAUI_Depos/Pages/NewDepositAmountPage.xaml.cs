@@ -1,39 +1,38 @@
 using MAUI_Depos.Pages;
-
+using MAUI_Depos.ViewModels;
 
 namespace Maui_App_Deposites.Pages;
 
-public partial class DepositStep : ContentPage
+public partial class NewDepositAmountPage : ContentPage
 {
+    private readonly ChooseOptionViewModel ViewModel;
+    private readonly UserStakingOption option;
+    private readonly bool isUnstaked;
 
-    private string lblDepositPeriod;
-    private string lblPercent;
-    private bool swIsActive;
-
-    public DepositStep()
+    public NewDepositAmountPage(UserStakingOption option, bool isUnstaked)
     {
         InitializeComponent();
-        btnMakeDeposit.IsEnabled = false;
+        this.option = option;
+        this.isUnstaked = isUnstaked;
 
+        SetValuesUI();
     }
 
-
-    public DepositStep(string _DepositPeriod, string _InterestRate, bool swIsActive)
+    private void SetValuesUI()
     {
-
-        InitializeComponent();
-        DepositPeriod.Text = _DepositPeriod;
-        InterestRate.Text = _InterestRate;
-        this.swIsActive = swIsActive;
+        DepositPeriod.Text = option.StakeDurationInDays.ToString() + " days ";
+        InterestRate.Text = option.APM.ToString() + "% ";
     }
+
 
     private async void btnBack_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushModalAsync(new DepositPage(), true);
+        await Navigation.PushModalAsync(new NewDepositPage(ViewModel), true);
     }
 
     private async void numberEntry_TextChanged(object sender, TextChangedEventArgs e)
     {
+        //TempControl.Text = numberEntry.Text;
         await CheckButton();
     }
 
@@ -49,17 +48,17 @@ public partial class DepositStep : ContentPage
         {
             btnMakeDeposit.BackgroundColor = Color.FromArgb("#272727");
             btnMakeDeposit.IsEnabled = false;
-
         }
     }
 
     private async void btnMakeDeposit_Clicked(object sender, EventArgs e)
     {
+        decimal userEntryAmount = Convert.ToDecimal(numberEntry.Text);
 
         double res = Convert.ToDouble(numberEntry.Text);
         if (res >= 1000)
         {
-            await Navigation.PushModalAsync(new DepositStep2());
+            await Navigation.PushModalAsync(new DepositInfoPage(option, userEntryAmount, btnMakeDeposit.IsEnabled));
         }
        
     }

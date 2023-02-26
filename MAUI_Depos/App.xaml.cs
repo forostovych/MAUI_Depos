@@ -17,10 +17,8 @@ public partial class App : Application
         var contents = reader.ReadToEnd();
         ChooseOptionViewModel viewModel;
 
-
         viewModel = JsonConvert.DeserializeObject<ChooseOptionViewModel>(contents);
-        MainPage = new DepositPage(viewModel);
-
+        MainPage = new NewDepositPage(viewModel);
         
         //string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "file.txt");
         //string fileContents = string.Empty;

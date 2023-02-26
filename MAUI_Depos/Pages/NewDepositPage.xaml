@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:MAUI_Depos.ViewModels;assembly=MAUI_Depos"
-             x:Class="MAUI_Depos.Pages.DepositPage"
+             x:Class="MAUI_Depos.Pages.NewDepositPage"
              >
 
     <VerticalStackLayout BackgroundColor="#1E1E1E" Spacing="5" Padding="15" >
@@ -172,10 +172,6 @@
                                 BackgroundColor="Transparent" BorderColor="Transparent">
                                 <Image Source="usdt" HeightRequest="40" x:Name="imgLogoUnstak"  />
                             </Frame>
-                            <!--<Frame 
-                                x:Name="frmCryptoMask" BackgroundColor="Black" IsVisible="false"
-                                HeightRequest="41" WidthRequest="41" Opacity="0.01" CornerRadius="20"
-                                Margin="0,-41,0,0" BorderColor="Transparent"/>-->
 
                         </StackLayout>
 

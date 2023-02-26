@@ -65,25 +65,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Pages\DepositStep.xaml.cs">
-	    <DependentUpon>DepositStep.xaml</DependentUpon>
+	  <Compile Update="Pages\NewDepositAmountPage.xaml.cs">
+	    <DependentUpon>NewDepositAmountPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Pages\DepositPage.xaml.cs">
-	    <DependentUpon>DepositPage.xaml</DependentUpon>
+	  <Compile Update="Pages\NewDepositPage.xaml.cs">
+	    <DependentUpon>NewDepositPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Pages\DepositStep2.xaml.cs">
-	    <DependentUpon>DepositStep2.xaml</DependentUpon>
+	  <Compile Update="Pages\DepositInfoPage.xaml.cs">
+	    <DependentUpon>DepositInfoPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\DepositStep.xaml">
+	  <MauiXaml Update="Pages\NewDepositAmountPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\DepositPage.xaml">
+	  <MauiXaml Update="Pages\NewDepositPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\DepositStep2.xaml">
+	  <MauiXaml Update="Pages\DepositInfoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
@@ -117,6 +117,7 @@
 
 	<ItemGroup>
 	  <Folder Include="Resources\Images\DepositIntervals\" />
+	  <Folder Include="Services\" />
 	</ItemGroup>
 
 	<ItemGroup>

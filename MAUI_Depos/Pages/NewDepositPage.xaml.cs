@@ -3,23 +3,29 @@ using MAUI_Depos.ViewModels;
 
 namespace MAUI_Depos.Pages;
 
-public partial class DepositPage : ContentPage
+public partial class NewDepositPage : ContentPage
 {
     private ChooseOptionViewModel viewModel;
     private List<UserStakingOption> options;
     private List<OpportunitiesUI> oportunitiesUI;
 
-    public DepositPage()
+    public NewDepositPage()
     {
-
+        InitializeComponent();
     }
 
-    public DepositPage(ChooseOptionViewModel _viewModel)
+    public NewDepositPage(ChooseOptionViewModel _viewModel)
     {
+        InitializeComponent();
         viewModel = _viewModel;
         BindingContext = viewModel;
-        InitializeComponent();
         LoadValues(_viewModel);
+    }
+    private List<BaseStakingTransaction> GetDepositInterests(BaseStakingDepositEntity depositEntity)
+    {
+        List<BaseStakingTransaction> interests = viewModel.UserInformation.Interests.Where(x => x.StakingDepositEntityId == depositEntity.Id).ToList();
+
+        return interests;
     }
 
     private void LoadValues(ChooseOptionViewModel _viewModel)
@@ -110,7 +116,7 @@ public partial class DepositPage : ContentPage
     private async void btnMakeDeposit_Clicked(object sender, EventArgs e)
     {
         // Создание новой страницы
-        DepositStep step = new DepositStep(lblDepositPeriod.Text, lblPercent.Text, swIsActive.IsToggled);
+        NewDepositAmountPage step = new NewDepositAmountPage(options[OpportunitiesUI.CurrentId], swIsActive.IsToggled);
 
         // Анимированный переход на следующую страницу
         await Navigation.PushModalAsync(step, true);
@@ -155,6 +161,8 @@ public partial class DepositPage : ContentPage
             switchConrol.IsEnabled = isActiv;
             switchConrol.OnColor = Colors.Grey;
             switchConrol.ThumbColor = Colors.White;
+            lblUnstake.TextColor = Colors.White;
+
             imgLogoUnstak.Opacity = 1;
         }
         else
@@ -163,6 +171,8 @@ public partial class DepositPage : ContentPage
             switchConrol.IsEnabled = isActiv;
             switchConrol.OnColor = Colors.Grey;
             switchConrol.ThumbColor = Colors.Grey;
+            lblUnstake.TextColor = Colors.Grey;
+
             imgLogoUnstak.Opacity = 0.3d;
         }
     }
@@ -183,23 +193,3 @@ public partial class DepositPage : ContentPage
 
 }
 
-public class OpportunitiesUI
-{
-    public static int CurrentId { get; set; }   //      The current ID of the selected opportunity
-    public int Id { get; }                      // 0.   Id
-    public decimal PercentAPM { get; }          // 5.   Percentage per month {blblPercent.Text}
-    public int UnstakeDurationInDays { get; }   // 6.   The waiting period before withdrawing money
-    public decimal DepositPeriod { get; }       // 7.   Deposit time {lblDepositPeriod.Text}
-    public bool CanUnstakeBeforeEnd { get; }    // 8.   Is it possible to cancel the deposit early?
-
-    public OpportunitiesUI(UserStakingOption res, int id)
-    {
-        PercentAPM = res.APM;                                   // 5.   Percentage per month
-        UnstakeDurationInDays = res.UnstakeDurationInDays;      // 6.   The waiting period before withdrawing money                           // 
-        DepositPeriod = res.StakeDurationInDays;                // 7.   Deposit time
-        CanUnstakeBeforeEnd = res.CanUnstakeBeforeEnd;          // 8.   Is it possible to cancel the deposit early
-        Id = id;
-        CurrentId = Id;                                         // 10.  The current ID of the selected opportunity
-    }
-
-}
