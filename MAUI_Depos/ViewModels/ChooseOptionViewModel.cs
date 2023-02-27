@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui.Core.Extensions;
+using PrivateAsset.Shared.Models.Staking;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 

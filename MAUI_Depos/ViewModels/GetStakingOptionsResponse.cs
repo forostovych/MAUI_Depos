@@ -1,4 +1,5 @@
-﻿using PrivateAsset.Shared.Responses.Exchange;
+﻿using PrivateAsset.Shared.Models.Staking;
+using PrivateAsset.Shared.Responses.Exchange;
 
 namespace MAUI_Depos.ViewModels
 {
@@ -8,8 +9,6 @@ namespace MAUI_Depos.ViewModels
 
         public UserStakingOption[] AvailableOptions { get; set; }
     }
-
-
 
     public enum UserExchangeCheckStatus
     {

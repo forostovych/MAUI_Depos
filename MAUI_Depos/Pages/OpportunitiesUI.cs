@@ -1,4 +1,5 @@
 ﻿using MAUI_Depos.ViewModels;
+using PrivateAsset.Shared.Models.Staking;
 
 namespace MAUI_Depos.Pages
 {

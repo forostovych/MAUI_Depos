@@ -1,4 +1,6 @@
-﻿namespace MAUI_Depos.ViewModels
+﻿using PrivateAsset.Shared.Models.Staking;
+
+namespace MAUI_Depos.ViewModels
 {
     public class GetStakingUserInformationResponse
     {

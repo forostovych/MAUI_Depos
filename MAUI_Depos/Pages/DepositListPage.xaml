@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PrivateAsset.Views.DepositListPage"
+             Shell.NavBarIsVisible="True"
+             BackgroundColor="#1E1E1E">
+
+    <!--1E1E1E
+    272727-->
+
+
+        <Grid>
+
+            <Border BackgroundColor="Green" StrokeThickness="0" StrokeShape="RoundRectangle 0,0,10,10" Padding="10" Grid.Row="0">
+
+                <StackLayout Orientation="Vertical" HorizontalOptions="Center" Padding="2" Spacing="17">
+
+                    <Label 
+                        x:Name="lblMainInfo" Text="Accumulated Deposits USDT"
+                        TextColor="White" FontFamily="ebrima.ttf" 
+                        FontSize="16" FontAttributes="Bold"/>
+
+                    <Label 
+                        x:Name="lblMainInfoAmount" Text="10000 $"
+                        HorizontalTextAlignment="Center"
+                        TextColor="White" FontFamily="ebrima.ttf" 
+                        FontSize="40" FontAttributes="Bold"/>
+
+
+                </StackLayout>
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#363636"
+                          Offset="0.5" />
+                        <GradientStop Color="#575757"
+                          Offset="2.0" />
+                    </LinearGradientBrush>
+                </Border.Background>
+
+            </Border>
+
+        <HorizontalStackLayout
+            Grid.Row="1" Padding="0" Spacing="15" Margin="0,-45,0,0"
+            VerticalOptions="Center" HeightRequest="75" HorizontalOptions="Center">
+
+            <Frame BackgroundColor="#575757" BorderColor="Transparent" WidthRequest="170" CornerRadius="15">
+                <HorizontalStackLayout Padding="0" Spacing="15" HeightRequest="70">
+
+                    <Frame CornerRadius="25" HeightRequest="50" WidthRequest="50" BackgroundColor="#97909C" BorderColor="Transparent">
+
+
+
+                    </Frame>
+
+
+                    <VerticalStackLayout WidthRequest="70" HeightRequest="50" VerticalOptions="Center" Margin="0,10,0,0">
+                        <Label
+                            Text="Create deposit"
+                            TextColor="White" FontFamily="ebrima.ttf" 
+                            FontSize="15" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                    
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame BackgroundColor="#575757" BorderColor="Transparent" WidthRequest="170" CornerRadius="15">
+                <HorizontalStackLayout Padding="0" Spacing="15" HeightRequest="70">
+
+                    <Frame CornerRadius="25" HeightRequest="50" WidthRequest="50" BackgroundColor="#0A87BD" BorderColor="Transparent">
+
+
+                    </Frame>
+
+
+                    <VerticalStackLayout WidthRequest="70" HeightRequest="50" VerticalOptions="Center" Margin="0,10,0,0">
+                        <Label
+                            Text="Create contract"
+                            TextColor="White" FontFamily="ebrima.ttf" 
+                            FontSize="15" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+
+                </HorizontalStackLayout>
+            </Frame>
+
+
+
+
+        </HorizontalStackLayout>
+
+
+        <ScrollView Grid.Row="2" Margin="0,10,0,0">
+
+            <VerticalStackLayout 
+                BindableLayout.ItemsSource="{Binding deposits}" Padding="30" Spacing="15">
+
+                <BindableLayout.ItemTemplate>
+
+                    <DataTemplate>
+
+                        <StackLayout>
+
+                            <Frame 
+                                BorderColor="Transparent" BackgroundColor="#272727" HeightRequest="70"
+                                CornerRadius="12" Background="Transparent" Padding="0" >
+
+                                <HorizontalStackLayout Spacing="15" VerticalOptions="Center">
+
+                                    <Frame Background="#53AE94" BorderColor="Transparent" IsClippedToBounds="True"
+                                        CornerRadius="90" Padding="0" VerticalOptions="Center" HorizontalOptions="Center"
+                                        HeightRequest="50" WidthRequest="50">
+
+                                        <StackLayout 
+                                            Orientation="Horizontal" HorizontalOptions="Center"
+                                            HeightRequest="28" Padding="0" Spacing="0" >
+
+                                            <Label 
+                                                Text="{Binding APY}" FontSize="17" VerticalTextAlignment="Center"
+                                                FontAttributes="Bold" />
+
+                                            <Label Text=" %" FontSize="12" FontAttributes="Bold"  VerticalTextAlignment="Center"/>
+
+                                        </StackLayout>
+
+                                    </Frame>
+
+                                    <VerticalStackLayout Padding="0" Spacing="0">
+
+                                        <HorizontalStackLayout Padding="0" Spacing="0">
+
+                                            <Label 
+                                                Text="{Binding DepositAmount}" TextColor="White" FontFamily="ebrima.ttf" 
+                                                FontSize="15" FontAttributes="Bold" Margin="5,5,0,0"
+                                                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+                                            <Label 
+                                                Text="USDT" TextColor="White" FontFamily="ebrima.ttf"
+                                                FontSize="15" FontAttributes="Bold" Margin="5,5,0,0"
+                                                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+                                        </HorizontalStackLayout>
+
+                                        <ProgressBar 
+                                            x:Name="pbProgressAmount"
+                                            Progress="{Binding ProgresState}" ProgressColor="#53AE94" WidthRequest="250"/>
+
+                                        <HorizontalStackLayout Padding="0" Spacing="0">
+
+                                            <Label 
+                                                Text="Next pay:" TextColor="Gray" FontFamily="ebrima.ttf"
+                                                FontSize="12" FontAttributes="Bold" Margin="5,-5,0,0"
+                                                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+                                            <Label 
+                                                Text="{Binding TotalPercents}" TextColor="Gray" FontFamily="ebrima.ttf"
+                                                FontSize="12" FontAttributes="Bold" Margin="5,-5,0,0"
+                                                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+                                            <Label
+                                                Text="USDT" TextColor="Gray" FontFamily="ebrima.ttf"
+                                                FontSize="16" FontAttributes="Bold" Margin="5,-5,0,0"
+                                                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+
+                                        </HorizontalStackLayout>
+
+                                    </VerticalStackLayout>
+
+                                </HorizontalStackLayout>
+
+                            </Frame>
+
+                        </StackLayout>
+
+                    </DataTemplate>
+
+                </BindableLayout.ItemTemplate>
+
+
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        </Grid>
+        
+
+</ContentPage>

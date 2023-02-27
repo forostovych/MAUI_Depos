@@ -1,6 +1,7 @@
 using Maui_App_Deposites.Pages;
 using MAUI_Depos.ViewModels;
 using MAUI_ScanImages.Services;
+using PrivateAsset.Shared.Models.Staking;
 
 namespace MAUI_Depos.Pages;
 

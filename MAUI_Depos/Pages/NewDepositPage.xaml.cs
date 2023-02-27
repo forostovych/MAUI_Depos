@@ -1,5 +1,9 @@
 using Maui_App_Deposites.Pages;
 using MAUI_Depos.ViewModels;
+using PrivateAsset.Shared.Models.Staking;
+using PrivateAsset.ViewModels;
+using PrivateAsset.Views;
+using WalletConnectSharp.Desktop;
 
 namespace MAUI_Depos.Pages;
 
@@ -186,5 +190,15 @@ public partial class NewDepositPage : ContentPage
         }
     }
 
+    private void btnGoTest_Clicked(object sender, EventArgs e)
+    {
+        List<BaseStakingOption> options = viewModel.UserInformation.StakingOptionsResponse.AvailableOptions.Select(x => (BaseStakingOption)x).ToList();
+        List<BaseStakingDepositEntity> deposits = viewModel.UserInformation.Deposits.ToList();
+        List<BaseStakingTransaction> interests = viewModel.UserInformation.Interests.ToList();
+        DepositListViewModel depositviewModel = new DepositListViewModel(options, deposits, interests);
+        WalletConnect walletConnect = null;
+
+        Navigation.PushModalAsync( new DepositListPage(depositviewModel, walletConnect));
+    }
 }
 

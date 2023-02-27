@@ -254,9 +254,15 @@
 
             </Frame>
 
-            <Button 
+        <Button 
+            x:Name="btnGoTest" Clicked="btnGoTest_Clicked" BorderColor="Grey" BorderWidth="2"
+            Margin="2,50,2,0" BackgroundColor="#272727" TextColor="White"
+            CornerRadius="12" Text="Go Test" FontFamily="ebrima.ttf"
+            FontSize="16" FontAttributes="Bold" HeightRequest="55"/>
+
+        <Button 
             x:Name="btnMakeDeposit" Clicked="btnMakeDeposit_Clicked"
-            Margin="2,195,2,0" BackgroundColor="#E65F5B" TextColor="White"
+            Margin="2,50,2,0" BackgroundColor="#E65F5B" TextColor="White"
             CornerRadius="12" Text="Make a deposit" FontFamily="ebrima.ttf"
             FontSize="16" FontAttributes="Bold" HeightRequest="55"/>
 
